@@ -1,6 +1,6 @@
  // Hard coded values / variables
- let hard = { 
-    "RegisteredOfficeAddress":  ["G", 162,"1143470109"],
+ let hardvalues = { 
+    "RegisteredOfficeAddress" :  ["G", 162,"1143470109"],
     "PlaceOfBusiness" : ["G",164,"457686347"],
     "EmailAddress" : ["E",170,"-487739423"],
     "MobileAddress" : ["T",122,"-1415936973"]
@@ -16,11 +16,11 @@ def displaymethod(Input)[
         "id": $Input.id,
         "Name": $Input.name,
         "Attributes":{
-            "addressCategoryName": get-key($hard,$Name)[0],
-            "addressNameCode":get-key($hard,$Name)[1],
+            "addressCategoryName": get-key($hardvalues, $Name)[0],
+            "addressNameCode": get-key($hardvalues, $Name)[1],
 
             //Addresses
-            "localityName":$Attribute.City,
+            "localityName": $Attribute.City,
             "addressPostcode" : $Attribute.Postcode,
             "addressStateCode" : $Attribute.RegionCode,
             "addressCountryCode" : $Attribute.CountryCode,
@@ -28,18 +28,18 @@ def displaymethod(Input)[
             "addressLine2" : $Attribute.Line2,
 
             //email
-            "internetEmailAddress":$Input.attributes.Email,
+            "internetEmailAddress": $Input.attributes.Email,
             "StartDate": $Input.attributes.StartDate,
             
             //phone
             "phoneNumber": $Input.attribues.Number,
-            "countryCallingCode" : $Input.attributes.CountryCallingCode,
+            "countryCallingCode": $Input.attributes.CountryCallingCode,
         },
-        "oidDigest": get-key($hard,$Name)[2]
+        "oidDigest": get-key($hardvalues, $Name)[2]
     }]
 
 
 // Run the method
 { 
-"addresses" : displaymethod(.registeredOfficeAddresses[0]) + displaymethod(.ppobAddresses[0]) + displaymethod(.email) + displaymethod(.mobile)
+"addresses": displaymethod(.registeredOfficeAddresses[0]) + displaymethod(.ppobAddresses[0]) + displaymethod(.email) + displaymethod(.mobile)
 }
